@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.css">
   <!-- <link href="index.css" rel="stylesheet"> -->
 </head>
 <body>
@@ -22,12 +23,17 @@
   <br/><br/>
 
   <div class="container-fluid">
+
     <div class="row" id="test">
 
     </div>
+    <h2 align="center">Current Events</h2>
+    <div class="slider1" id="test2">
+      </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.js"></script>
   <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
   <!-- <script src="index.js"></script> -->
   <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDTlf4PdknQp7TuI8oakozrbDTMCflpBMg&callback=loadMap"></script> -->
@@ -38,14 +44,27 @@
   var eventsData = JSON.parse(eventsData);
   console.log(eventsData);
   var innerhtml = "<div>";
+  var testinner ="";
   for(var e in eventsData){
     var obj = eventsData[e];
     var name = obj.name;
     var image = obj.imgUrL;
-    innerhtml += "<div> Name  <input type='text' value="+name+" disabled><img src="+obj.imgUrL+"></div>";
+    var url = obj.url;
+    var date = obj.startDate;
+    innerhtml += "<div><h4>"+name+" - "+date+"</h4>"+
+    "<a class='btn btn-primary' href='/socialInfo/"+name+"'>Social Network Info</a><a href="+url+"><img width='300' height='200' src="+image+"></a></div></br>";
+    testinner += "<div class='slide' height='400' width='250px'><div height='100' width='250px'><h5>"+name+"</h5><h5>"+date+"</h5></div><a href="+url+"><img src="+image+" width='300' height='200'></a><br><a class='btn btn-primary' href='/socialInfo/"+name+"'>Social Network Info</a></div>";
   }
   innerhtml += "</div>";
-  $('#test').html(innerhtml);
+  // $('#test').html(innerhtml);
+
+  $('#test2').html(testinner);
+  $('.slider1').bxSlider({
+    slideWidth: 200,
+    minSlides: 2,
+    maxSlides: 5,
+    slideMargin: 10
+  });
   </script>
 </body>
 </html>

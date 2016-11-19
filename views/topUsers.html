@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>Ticket Master DevJam</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.css">
+  <!-- <link href="index.css" rel="stylesheet"> -->
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">DevJam - Ticket Matser</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+
+      </ul>
+    </div>
+  </nav>
+  <br/><br/>
+  <br/><br/>
+
+  <div class="container-fluid">
+    <div class="row" id="test">
+
+    </div>
+    <h2 align="center">Top Users</h2>
+    <div class="slider1" id="test2">
+      </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.js"></script>
+  <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+  <!-- <script src="index.js"></script> -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDTlf4PdknQp7TuI8oakozrbDTMCflpBMg&callback=loadMap"></script> -->
+  <!-- <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> -->
+  <script>
+  var userData = "<%=userData%>".replace(/&#34;/g,'"');
+  // console.log(sentimentDetails);
+  var userData = JSON.parse(userData);
+  console.log(userData);
+  var innerhtml = "<div>";
+  var testinner ="";
+  for(var e in userData){
+    var obj = userData[e];
+    var name = obj.name;
+    var image = obj.img;
+    innerhtml += "<div><h4>"+name+"</h4>"+
+    "<a class='btn btn-primary' href='/relatedTweets/"+name+"'>See Related Tweets</a><a href=https://twitter.com/"+name+"><img width='60' height='60' src="+image+"></a></div></br>";
+    testinner += "<div class='slide' height='400' width='250px'><div height='100' width='250px'><h3>"+name+"</h3></div><a href=https://twitter.com/"+name+"><img width='60' height='60' src="+image+"></a><br><a class='btn btn-primary' href='/relatedTweets/"+name+"'>Tweets</a></div>";
+  }
+  innerhtml += "</div>";
+  // $('#test').html(innerhtml);
+  $('#test2').html(testinner);
+  $('.slider1').bxSlider({
+    slideWidth: 200,
+    minSlides: 2,
+    maxSlides: 6,
+    slideMargin: 10
+  });
+  </script>
+</body>
+</html>
