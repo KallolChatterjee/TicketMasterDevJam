@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Ticket Master DevJam</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link href="index.css" rel="stylesheet"> -->
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">DevJam - Ticket Matser</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+
+      </ul>
+    </div>
+  </nav>
+  <br/><br/>
+  <br/><br/>
+
+  <div class="container-fluid">
+    <div class="row" id="test">
+
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+  <!-- <script src="index.js"></script> -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDTlf4PdknQp7TuI8oakozrbDTMCflpBMg&callback=loadMap"></script> -->
+  <!-- <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> -->
+  <script>
+  var eventsData = "<%=eventsData%>".replace(/&#34;/g,'"');
+  // console.log(sentimentDetails);
+  var eventsData = JSON.parse(eventsData);
+  console.log(eventsData);
+  var innerhtml = "<div>";
+  for(var e in eventsData){
+    var obj = eventsData[e];
+    var name = obj.name;
+    var image = obj.imgUrL;
+    innerhtml += "<div> Name  <input type='text' value="+name+" disabled><img src="+obj.imgUrL+"></div>";
+  }
+  innerhtml += "</div>";
+  $('#test').html(innerhtml);
+  </script>
+</body>
+</html>
